@@ -1,5 +1,7 @@
 window.onload = function() {
 
+    const sub = "https://mtracker28.herokuapp.com/api/v2"
+
     // POST user signup
     let elemnt = document.getElementById('signup')
     if (elemnt){
@@ -15,7 +17,7 @@ window.onload = function() {
         let password = document.getElementById('password').value;
         let cnfpass = document.getElementById('cnfpass').value;
     
-        fetch('https://mtracker28.herokuapp.com/api/v2/auth/register', {
+        fetch('${sub}/auth/register', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -31,9 +33,8 @@ window.onload = function() {
                         document.getElementById('flash').style.color = 'red'
                         document.getElementById('flash').innerHTML = data.response
                     }else {
+                        localStorage.setItem("msg",data.message);
                         window.location.href = 'login.html'
-                        document.getElementById('flash').style.color = 'green'
-                        document.getElementById('flash').innerHTML = data.message
                     }
                 }else{
                     document.getElementById('flash').style.color = 'red'

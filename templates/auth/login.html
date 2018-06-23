@@ -59,6 +59,14 @@
             </div>
         </div>
         </div>
+        <script type="text/javascript">
+            window.onload = function() {
+            let msg = localStorage.getItem("msg");
+            document.getElementById('flash').style.color = 'green'
+            document.getElementById('flash').innerHTML = msg
+            localStorage.removeItem( 'msg' );
+            }
+        </script>
 
     </body>
 </html>
