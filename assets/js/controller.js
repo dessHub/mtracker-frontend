@@ -1,11 +1,15 @@
 window.onload = function() {
 
     const sub = "https://mtracker28.herokuapp.com/api/v2"
+    let msg = localStorage.getItem("msg");
+    document.getElementById('flash').style.color = 'green'
+    document.getElementById('flash').innerHTML = msg
+    localStorage.removeItem( 'msg' );
 
     // POST user signup
-    let elemnt = document.getElementById('signup')
-    if (elemnt){
-        elemnt.addEventListener
+    let singup_el = document.getElementById('signup')
+    if (singup_el){
+        singup_el.addEventListener
         ('submit', signup);
     }
 
@@ -17,7 +21,7 @@ window.onload = function() {
         let password = document.getElementById('password').value;
         let cnfpass = document.getElementById('cnfpass').value;
     
-        fetch('${sub}/auth/register', {
+        fetch(sub + '/auth/register', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -44,6 +48,46 @@ window.onload = function() {
             })
     
         }
+
+    // POST user login
+    let login_el = document.getElementById('signin')
+    if (login_el){
+        login_el.addEventListener
+        ('submit', signin);
+        
+    }
+
+    function signin(e){
+        e.preventDefault();
+    
+        let username = document.getElementById('username').value;        
+        let password = document.getElementById('password').value;
+            
+        fetch(sub + '/auth/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-type':'application/json'
+            },
+            body:JSON.stringify({username:username, password:password})
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                
+                console.log(data)
+                if(data.message == "Login Successfull.") {
+                    console.log(data.Access_token)
+                    localStorage.setItem("token",data.Access_token);
+                    localStorage.setItem("msg",data.message);
+                    window.location.href = '../user/request-form.html'
+
+                }else{
+                    document.getElementById('flash').style.color = 'red'
+                    document.getElementById('flash').innerHTML = data.message
+                }
+            })
+    
+    }
 
 
 
