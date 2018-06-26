@@ -90,7 +90,14 @@ window.onload = function() {
     
     }
 
-    // Load create requests page
+    // Load create requests page 
+    let reqform = document.getElementById('reqForm')
+    if (reqform){
+        reqform.addEventListener
+        ('click', requestForm);
+        
+    }
+
 
     function requestForm(e){
         e.preventDefault();
