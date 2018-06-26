@@ -3,8 +3,8 @@
     <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Maintenance Tracker App</title>
-            <link rel="stylesheet" href="../../assets/css/styles.css">
-            <script src="../../assets/js/controller.js"></script>
+            <link rel="stylesheet" href="assets/css/styles.css">
+            <script src="assets/js/controller.js"></script>
             
         </head>
         <body>
@@ -14,12 +14,12 @@
              
                 <ul id="menu">
                     
-                   <li id="logo"><a href="../../index.html">Maintenance</a></li>
+                   <li id="logo"><a href="index.html">Maintenance</a></li>
                                
-                   <li><a href="../../index.html">Home</a></li>
-                   <li><a href="../../templates/user/my-requests.html">My Requests </a></li>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="templates/user/my-requests.html">My Requests </a></li>
                    <li><a href="request-form.html">Request Service </a></li>
-                   <li id="login"><a href="../../index.html">Log Out</a></li> 
+                   <li id="login"><a href="index.html">Log Out</a></li> 
                 </ul>
         </div> <!-- navigation menu ends -->
 
@@ -38,11 +38,11 @@
                     <p>Place a request now and our team will get back to you.</p>
                     <p id="flash"></p>
                 </div>
-                <form>
+                <form id="request_form">
                     <div class="row">
                         <div class="col-lg-12 col-sm-12">
                             <label id="form-label">Service Type:</label>
-                            <select name="serviceType">
+                            <select id="category" name="serviceType">
                                 <option value="">Select Service Type</option>
                                 <option value="Maintenance">Maintenance</option>
                                 <option value="Repair">Repair</option>
@@ -50,22 +50,14 @@
                         </div>
                         <div class="col-lg-12 col-sm-12">
                             <label id="form-label">Location:</label>
-                            <input type="text" name="text" placeholder="Location">
-                        </div>
-                        <div class="col-lg-6 col-sm-12">
-                                <label id="form-label">Select Date:</label>
-                            <input type="date" name="date" placeholder="Maintenance Date">
-                        </div>
-                        <div class="col-lg-6 col-sm-12">
-                            <label id="form-label"> Time:</label>
-                            <input type="time" name="date" placeholder="Maintenance Date">
+                            <input type="text" id="location" name="location" placeholder="Location" required
                         </div>
                         <div class="col-lg-12 col-sm-12">
                             <label id="form-label">Description.</label> 
-                            <textarea row="5" name="description" placeholder="Service Description"></textarea>
+                            <textarea row="5" id="description" name="description" placeholder="Service Description" required></textarea>
                         </div>
                         <div class="col-lg-6 col-sm-12">
-                            <button class="btn-success">Submit </button> 
+                            <input type="submit" class="btn-success" value="Submit"> 
                         </div>
 
                     </div>

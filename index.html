@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Maintenance Tracker App</title>
         <link rel="stylesheet" href="assets/css/styles.css">
+        <script src="assets/js/controller.js"></script>
         
     </head>
     <body>
@@ -16,8 +17,8 @@
                <li id="logo"><a href="index.html">Maintenance</a></li>
                            
                <li><a href="index.html">Home</a></li>
-               <li><a href="templates/user/request-form.html">Request Service </a></li>
-               <li id="login"><a href="templates/auth/login.html">Login/Signup</a></li> 
+               <li><a href="#" onClick="requestForm(e)">Request Service</a></li>
+               <li id="login"><a href="login.html">Login/Signup</a></li> 
             </ul>
         </div> <!-- navigation menu ends -->
 
@@ -28,10 +29,11 @@
         <div class="slider">
             <div class="row">
                 <div class="col-lg-12 col-sm-12">
+                        <p id="flash"></p>
                     <h1 id="welcome-title">Welcome To Maintenance Tracker App</h2>
                     <p>We offer Maintenance and Repair services . Create account and request for a service.</p> 
-                    <a href="templates/auth/signup.html"><button class="btn-primary" >CREATE ACCOUNT</button></a>
-                    <a href="templates/user/request-form.html"><button class="btn-success" >REQUEST SERVICE</button></a>  
+                    <a href="signup.html"><button class="btn-primary" >CREATE ACCOUNT</button></a>
+                    <a href="request-form.html"><button class="btn-success" >REQUEST SERVICE</button></a>  
                 </div>
             </div>
         </div>
