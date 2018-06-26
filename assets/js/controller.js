@@ -1,10 +1,11 @@
 window.onload = function() {
 
-    const sub = "https://mtracker28.herokuapp.com/api/v2"
+    const sub = "http://0.0.0.0:5000/api/v2"
     let msg = localStorage.getItem("msg");
     document.getElementById('flash').style.color = 'green'
     document.getElementById('flash').innerHTML = msg
     localStorage.removeItem( 'msg' );
+    const token = localStorage.getItem("token");
 
     // POST user signup
     let singup_el = document.getElementById('signup')
@@ -79,7 +80,75 @@ window.onload = function() {
                     console.log(data.Access_token)
                     localStorage.setItem("token",data.Access_token);
                     localStorage.setItem("msg",data.message);
-                    window.location.href = '../user/request-form.html'
+                    window.location.href = 'request-form.html'
+
+                }else{
+                    document.getElementById('flash').style.color = 'red'
+                    document.getElementById('flash').innerHTML = data.message
+                }
+            })
+    
+    }
+
+    // Load create requests page
+
+    function requestForm(e){
+        e.preventDefault();
+
+        fetch(sub + '/users/requests', {
+            method:"GET",
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true,
+                'Authorization': `Bearer ${token}`
+            }
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                
+                console.log(data)
+                if(data == 200) {
+                    window.location.href = 'request-form.html'
+
+                }else{
+                    localStorage.setItem("msg","Login To Continue");
+                    window.location.href = 'login.html'
+                }
+            })
+    
+    }
+
+    // Post requests 
+    let req_form = document.getElementById('request_form')
+    if (req_form){
+        req_form.addEventListener
+        ('submit', createRequest);
+        
+    }
+
+    function createRequest(e){
+        e.preventDefault();
+    
+        let location = document.getElementById('location').value;        
+        let category = document.getElementById('category').value;        
+        let description = document.getElementById('description').value;
+
+        fetch(sub + '/users/requests', {
+            method:"POST",
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-type':'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body:JSON.stringify({category:category, description:description,
+                location:location})
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .then((data) => {
+                if(data.message == "Successfully created") {
+                    window.location.href = 'my-requests.html'
 
                 }else{
                     document.getElementById('flash').style.color = 'red'
