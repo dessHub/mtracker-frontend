@@ -16,8 +16,8 @@
                <li id="logo"><a href="index.html">Maintenance</a></li>
                            
                <li><a href="index.html">Home</a></li>
-               <li><a nohref id="reqs">My Requests </a></li>
-               <li><a nohref id="reqForm">Request Service </a></li>
+               <li><a href="my-requests.html" id="reqs">My Requests </a></li>
+               <li><a href="request-form.html" id="reqForm">Request Service </a></li>
                <li id="login"><a href="index.html">Log Out</a></li> 
             </ul>
         </div> <!-- navigation menu ends -->
@@ -25,7 +25,7 @@
         <!--
             page content start
         -->
-        <div class="cover">
+        <div class="cover" style="display:none;" id="myDiv">
          <div class="content">
             <div class="page-title">
                 <h3>My Requests History</h3>
@@ -62,41 +62,68 @@
             </div>
          </div>
         </div>
+        <div class="loader"></div>
 
         <script type="text/javascript">
         window.onload = function() {
-            let data = JSON.parse(localStorage.getItem("reqList"));
-            console.log(data[0].date)
+            const sub = localStorage.getItem('sub')
+            const token = localStorage.getItem("token");
 
-            let table = document.getElementById('table');          
+            // Load requests page 
+            requestsList()
 
-            for(let i = 0; i < data.length; i++){
-                // create a table row
-                let new_row = table.insertRow();
-                
-                // create a table cell
-                let no = new_row.insertCell(0);
-                let category = new_row.insertCell(1);
-                let location = new_row.insertCell(2);
-                let description = new_row.insertCell(3);
-                let status = new_row.insertCell(4);
+            function requestsList(){
 
-                //add value to cell
-                no.innerHTML = i+1;
-                category.innerHTML = data[i].category;
-                location.innerHTML = data[i].location;
-                description.innerHTML ='<a href="request.html">'+ data[i].description + '</a>';
-                if(data[i].status == "Pending"){
-                    status.innerHTML = '<span id="status-pending">' + data[i].status + '</span>';
-                }else if(data[i].status == "Resolved"){
-                    status.innerHTML = '<span id="status-resolved">' + data[i].status + '</span>';
-                }else{
-                    status.innerHTML = '<span id="status-cancelled">' + data[i].status + '</span>';
-                }
-                
-                
+                fetch(sub + '/users/requests', {
+                    method:"GET",
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Credentials": true,
+                        'Authorization': `Bearer ${token}`
+                    }
+                    })
+                    .then((res) => res.json())
+                    .then((resp) => {
+                        
+                        if(resp.response) {
+                            document.getElementById("myDiv").style.display = "block";
+                            let table = document.getElementById('table'); 
+                            let data = resp.response         
+
+                            for(let i = 0; i < data.length; i++){
+                                // create a table row
+                                let new_row = table.insertRow();
+                                
+                                // create a table cell
+                                let no = new_row.insertCell(0);
+                                let category = new_row.insertCell(1);
+                                let location = new_row.insertCell(2);
+                                let description = new_row.insertCell(3);
+                                let status = new_row.insertCell(4);
+
+                                //add value to cell
+                                no.innerHTML = i+1;
+                                category.innerHTML = data[i].category;
+                                location.innerHTML = data[i].location;
+                                description.innerHTML ='<a href="request.html">'+ data[i].description + '</a>';
+                                if(data[i].status == "Pending"){
+                                    status.innerHTML = '<span id="status-pending">' + data[i].status + '</span>';
+                                }else if(data[i].status == "Resolved"){
+                                    status.innerHTML = '<span id="status-resolved">' + data[i].status + '</span>';
+                                }else{
+                                    status.innerHTML = '<span id="status-cancelled">' + data[i].status + '</span>';
+                                }
+                                
+                                
+                            }
+
+                        }else{
+                            localStorage.setItem("msg","Login To Continue");
+                            window.location.href = 'login.html'
+                        }
+                    })
+
             }
-
         }
         </script>
 
