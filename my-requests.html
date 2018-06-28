@@ -100,6 +100,7 @@
                                 let location = new_row.insertCell(2);
                                 let description = new_row.insertCell(3);
                                 let status = new_row.insertCell(4);
+                                let action = new_row.insertCell(5);
 
                                 //add value to cell
                                 no.innerHTML = i+1;
@@ -112,6 +113,10 @@
                                     status.innerHTML = '<span id="status-resolved">' + data[i].status + '</span>';
                                 }else{
                                     status.innerHTML = '<span id="status-cancelled">' + data[i].status + '</span>';
+                                }
+
+                                if(data[i].status == "Pending"){
+                                    action.innerHTML = '<a href="requestUpdate.html?reqId='+ data[i].id + '">Edit</a>';
                                 }
                                 
                                 

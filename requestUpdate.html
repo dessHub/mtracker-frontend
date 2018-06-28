@@ -33,8 +33,7 @@
             
             <div class="form">
                 <div class="form-header">
-                    <h4>Need A Repair Or Maintenance?</h4>
-                    <p>Place a request now and our team will get back to you.</p>
+                    <h4>Update Your Request?</h4>
                     <p id="flash"></p>
                 </div>
                 <form id="request_form">
@@ -73,12 +72,14 @@
             document.getElementById('flash').style.color = 'green'
             document.getElementById('flash').innerHTML = msg
             localStorage.removeItem( 'msg' );
+            let url = new URL(window.location.href);
+            let reqId = url.searchParams.get("reqId");
             requestForm()
 
             // Load create requests page 
             function requestForm(){
 
-                fetch(sub + '/users/requests', {
+                fetch(sub + '/users/requests/' + reqId, {
                     method:"GET",
                     headers: {
                         "Access-Control-Allow-Origin": "*",
@@ -94,6 +95,11 @@
                             
                             localStorage.setItem("msg","Login To Continue");
                             window.location.href = 'login.html'
+                        }else{
+                            document.getElementById('category').value = data.category
+                            document.getElementById('location').value = data.location
+                            document.getElementById('description').value = data.description
+
                         }
                     })
 
@@ -114,8 +120,8 @@
                 let category = document.getElementById('category').value;        
                 let description = document.getElementById('description').value;
 
-                fetch(sub + '/users/requests', {
-                    method:"POST",
+                fetch(sub + '/users/requests/' + reqId, {
+                    method:"PUT",
                     headers: {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-type':'application/json',
@@ -128,7 +134,7 @@
                         return res.json()
                     })
                     .then((data) => {
-                        if(data.message == "Successfully created") {
+                        if(data.message == "Update succesfful") {
                             window.location.href = 'my-requests.html'
 
                         }else{
