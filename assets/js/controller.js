@@ -114,12 +114,12 @@ window.onload = function() {
             .then((data) => {
                 
                 console.log(data)
-                if(data == 200) {
-                    window.location.href = 'request-form.html'
-
-                }else{
+                if(data.message) {
+                    
                     localStorage.setItem("msg","Login To Continue");
                     window.location.href = 'login.html'
+                }else{
+                    window.location.href = 'request-form.html'
                 }
             })
     
@@ -147,8 +147,8 @@ window.onload = function() {
                 'Content-type':'application/json',
                 'Authorization': 'Bearer ' + token
             },
-            body:JSON.stringify({category:category, description:description,
-                location:location})
+            body:JSON.stringify({category:category,
+                location:location, description:description})
             })
             .then((res) => {
                 return res.json()
@@ -160,6 +160,42 @@ window.onload = function() {
                 }else{
                     document.getElementById('flash').style.color = 'red'
                     document.getElementById('flash').innerHTML = data.message
+                }
+            })
+    
+    }
+
+    // Load requests page 
+    let reqs = document.getElementById('reqs')
+    if (reqs){
+        reqs.addEventListener
+        ('click', requestsList);
+        
+    }
+
+
+    function requestsList(e){
+        e.preventDefault();
+
+        fetch(sub + '/users/requests', {
+            method:"GET",
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true,
+                'Authorization': `Bearer ${token}`
+            }
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                
+                console.log(data.response[1])
+                if(data.response) {
+                    localStorage.setItem("reqList", JSON.stringify(data.response));
+                    window.location.href = 'my-requests.html'
+
+                }else{
+                    localStorage.setItem("msg","Login To Continue");
+                    window.location.href = 'login.html'
                 }
             })
     

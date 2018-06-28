@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Maintenance Tracker App</title>
-        <link rel="stylesheet" href="../../assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
         
     </head>
     <body>
@@ -13,12 +13,12 @@
          
             <ul id="menu">
                 
-               <li id="logo"><a href="../../index.html">Maintenance</a></li>
+               <li id="logo"><a href="index.html">Maintenance</a></li>
                            
-               <li><a href="../../index.html">Home</a></li>
-               <li><a href="my-requests.html">My Requests </a></li>
-               <li><a href="../../templates/user/request-form.html">Request Service </a></li>
-               <li id="login"><a href="../../index.html">Log Out</a></li> 
+               <li><a href="index.html">Home</a></li>
+               <li><a nohref id="reqs">My Requests </a></li>
+               <li><a nohref id="reqForm">Request Service </a></li>
+               <li id="login"><a href="index.html">Log Out</a></li> 
             </ul>
         </div> <!-- navigation menu ends -->
 
@@ -29,15 +29,16 @@
          <div class="content">
             <div class="page-title">
                 <h3>My Requests History</h3>
+                <p id="flash"></p>
             </div>
             
             <div class="request">
-               <table >
+               <table id="table">
                   <thead>
                     <tr>
                       <th>#</th>
                       <th>Type</th>
-                      <th>Date</th>
+                      <th>Location</th>
                       <th>Description</th>
                       <th>Status</th>
                     </tr>
@@ -45,25 +46,11 @@
                   
                   <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>Maintenance</td>
-                      <td>30/5/2018 10:00 AM</td>
-                      <td><a href="request.html">We Need Maintenance on our companies' air conditioners .</a> </td>
-                      <td id="status-pending">Pending</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Maintenance</td>
-                      <td>15/4/2018 10:00 AM</td>
-                      <td><a href="request.html">We Need Maintenance on our companies' air conditioners .</a> </td>
-                      <td id="status-cancelled">Cancelled</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Repair</td>
-                      <td>10/4/2018 11:00 AM</td>
-                      <td><a href="request.html">Our air conditioner broke down, we need an urgent fix from your team.</a> </td>
-                      <td id="status-resolved">Resolved</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><a href="request.html"></a> </td>
+                      <td id="status-pending"></td>
                     </tr>
                      
                   </tbody>
@@ -75,6 +62,43 @@
             </div>
          </div>
         </div>
+
+        <script type="text/javascript">
+        window.onload = function() {
+            let data = JSON.parse(localStorage.getItem("reqList"));
+            console.log(data[0].date)
+
+            let table = document.getElementById('table');          
+
+            for(let i = 0; i < data.length; i++){
+                // create a table row
+                let new_row = table.insertRow();
+                
+                // create a table cell
+                let no = new_row.insertCell(0);
+                let category = new_row.insertCell(1);
+                let location = new_row.insertCell(2);
+                let description = new_row.insertCell(3);
+                let status = new_row.insertCell(4);
+
+                //add value to cell
+                no.innerHTML = i+1;
+                category.innerHTML = data[i].category;
+                location.innerHTML = data[i].location;
+                description.innerHTML ='<a href="request.html">'+ data[i].description + '</a>';
+                if(data[i].status == "Pending"){
+                    status.innerHTML = '<span id="status-pending">' + data[i].status + '</span>';
+                }else if(data[i].status == "Resolved"){
+                    status.innerHTML = '<span id="status-resolved">' + data[i].status + '</span>';
+                }else{
+                    status.innerHTML = '<span id="status-cancelled">' + data[i].status + '</span>';
+                }
+                
+                
+            }
+
+        }
+        </script>
 
     </body>
 </html>
