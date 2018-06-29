@@ -1,20 +1,16 @@
 const path = require("path");
 
 module.exports = {
+  mode: "development",
   entry: {
-    controller: "./assets/js/controller.js"
+    auth: "./assets/js/auth.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].min.js"
   },
   module:{
-      loaders: [
-          {
-              test: /\.js$/,
-              exclude: /node_modules/,
-              loader: "eslint-loader",
-          },
+      rules: [
           {
               test: /\.js$/,
               exclude: /node_modules/,
