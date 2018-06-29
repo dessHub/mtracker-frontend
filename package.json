@@ -1,0 +1,24 @@
+{
+  "name": "mtracker-frontend",
+  "version": "1.0.0",
+  "description": "Build with vannilla js and html5",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dessHub/mtracker-frontend.git"
+  },
+  "keywords": [
+    "vanilla",
+    "fetch",
+    "api"
+  ],
+  "author": "desshub95@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dessHub/mtracker-frontend/issues"
+  },
+  "homepage": "https://github.com/dessHub/mtracker-frontend#readme"
+}
