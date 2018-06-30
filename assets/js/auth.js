@@ -1,7 +1,6 @@
 import api from "./api";
 window.onload = () =>{
     
-    localStorage.setItem('sub', sub)
     let msg = localStorage.getItem("msg");
     document.getElementById('flash').style.color = 'green'
     document.getElementById('flash').innerHTML = msg
@@ -76,7 +75,7 @@ window.onload = () =>{
                     console.log(data.Access_token)
                     localStorage.setItem("token",data.Access_token);
                     localStorage.setItem("msg",data.message);
-                    window.location.href = 'request-form.html'
+                    window.location.href = '/public/pages/request-form.html'
     
                 }else{
                     document.getElementById('flash').style.color = 'red'

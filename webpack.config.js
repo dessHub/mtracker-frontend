@@ -3,7 +3,9 @@ const path = require("path");
 module.exports = {
   mode: "development",
   entry: {
-    auth: "./assets/js/auth.js"
+    auth: "./assets/js/auth.js",
+    createRequest: "./assets/js/createRequest.js",
+    viewRequests: "./assets/js/viewRequests.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
