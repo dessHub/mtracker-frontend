@@ -13,8 +13,7 @@ window.onload = () =>{
     let singup_el = document.getElementById("signup");
     
     if (singup_el){
-        singup_el.addEventListener
-        ("submit", signup);
+        singup_el.addEventListener("submit", signup);
     }
     
     function signup(e){
@@ -54,8 +53,7 @@ window.onload = () =>{
     let singin_el = document.getElementById("signin");
     
     if (singin_el){
-        singin_el.addEventListener
-        ("submit", signin);
+        singin_el.addEventListener("submit", signin);
     }
     
     function signin(e){
@@ -75,8 +73,12 @@ window.onload = () =>{
                     console.log(data.Access_token);
                     localStorage.setItem("token",data.Access_token);
                     localStorage.setItem("msg",data.message);
-                    window.location.href = "/public/pages/request-form.html";
-    
+                    localStorage.setItem("role", data.user["role"]);
+                    if(data.user["role"] == "Admin"){
+                        window.location.href = "/public/admin/dashboard.html";
+                    }else{
+                        window.location.href = "/public/pages/request-form.html";
+                    }
                 }else{
                     document.getElementById("flash").style.color = "red";
                     document.getElementById("flash").innerHTML = data.message;
