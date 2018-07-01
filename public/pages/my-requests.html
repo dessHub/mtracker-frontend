@@ -1,0 +1,70 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Maintenance Tracker App</title>
+        <link rel="stylesheet" href="../../assets/css/styles.css">
+        <script src="../../dist/viewRequests.min.js"></script>
+        
+    </head>
+    <body>
+        <div class="nav"> <!-- Navigation Menu Starts -->
+            <label for="show-menu" class="show-menu">Show Menu</label>
+            <input type="checkbox" id="show-menu" role="button">
+         
+            <ul id="menu">
+                
+               <li id="logo"><a href="/">Maintenance</a></li>
+                           
+               <li><a href="/">Home</a></li>
+               <li><a href="my-requests.html" id="reqs">My Requests </a></li>
+               <li><a href="request-form.html" id="reqForm">Request Service </a></li>
+               <li id="login"><a href="/">Log Out</a></li> 
+            </ul>
+        </div> <!-- navigation menu ends -->
+
+        <!--
+            page content start
+        -->
+        <div class="cover" style="display:none;" id="myDiv">
+         <div class="content">
+            <div class="page-title">
+                <h3>My Requests History</h3>
+                <p id="flash"></p>
+            </div>
+            
+            <div class="request">
+               <table id="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Type</th>
+                      <th>Location</th>
+                      <th>Description</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><a href="request.html"></a> </td>
+                      <td id="status-pending"></td>
+                    </tr>
+                     
+                  </tbody>
+
+               </table>
+               <div >
+                    <a href="request-form.html"><button class="btn-success">Place A New Request</button></a>
+                </div>
+            </div>
+         </div>
+        </div>
+        <div class="loader"></div>
+
+
+    </body>
+</html>

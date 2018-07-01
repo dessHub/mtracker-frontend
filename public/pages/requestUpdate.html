@@ -1,0 +1,71 @@
+<!Doctype html>
+<html>
+    <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Maintenance Tracker App</title>
+            <link rel="stylesheet" href="../../assets/css/styles.css">
+            <script src="../../dist/requestUpdate.min.js"></script>
+            
+        </head>
+        <body>
+            <div class="nav"> <!-- Navigation Menu Starts -->
+                <label for="show-menu" class="show-menu">Show Menu</label>
+                <input type="checkbox" id="show-menu" role="button">
+             
+                <ul id="menu">
+                    
+                   <li id="logo"><a href="/">Maintenance</a></li>
+                               
+                   <li><a href="/">Home</a></li>
+                   <li><a href="my-requests.html" id="reqs">My Requests </a></li>
+                   <li><a href="request-form.html" id="reqForm">Request Service </a></li>
+                   <li id="login"><a href="/">Log Out</a></li> 
+                </ul>
+        </div> <!-- navigation menu ends -->
+
+        <!--
+            page content start
+        -->
+        <div class="cover" style="display:none;" id="myDiv">
+        <div class="content">
+            <div class="page-title">
+                <h3>Request Form Page</h3>
+            </div>
+            
+            <div class="form">
+                <div class="form-header">
+                    <h4>Update Your Request?</h4>
+                    <p id="flash"></p>
+                </div>
+                <form id="request_form">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <label id="form-label">Service Type:</label>
+                            <select id="category" name="serviceType">
+                                <option value="">Select Service Type</option>
+                                <option value="Maintenance">Maintenance</option>
+                                <option value="Repair">Repair</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+                            <label id="form-label">Location:</label>
+                            <input type="text" id="location" name="location" placeholder="Location" required
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+                            <label id="form-label">Description.</label> 
+                            <textarea row="5" id="description" name="description" placeholder="Service Description" required></textarea>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <input type="submit" class="btn-success" value="Submit"> 
+                        </div>
+
+                    </div>
+                </form>              
+            </div>
+
+        </div>
+      </div>
+
+      <div class="loader"></div>
+    </body>
+</html>
