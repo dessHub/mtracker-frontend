@@ -6,7 +6,8 @@ module.exports = {
     auth: "./assets/js/auth.js",
     createRequest: "./assets/js/createRequest.js",
     viewRequests: "./assets/js/viewRequests.js",
-    requestUpdate: "./assets/js/requestUpdate.js"
+    requestUpdate: "./assets/js/requestUpdate.js",
+    logOut: "./assets/js/logout.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
