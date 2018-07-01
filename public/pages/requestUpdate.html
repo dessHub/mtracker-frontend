@@ -3,7 +3,8 @@
     <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Maintenance Tracker App</title>
-            <link rel="stylesheet" href="assets/css/styles.css">
+            <link rel="stylesheet" href="../../assets/css/styles.css">
+            <script src="../../dist/requestUpdate.min.js"></script>
             
         </head>
         <body>
@@ -13,19 +14,19 @@
              
                 <ul id="menu">
                     
-                   <li id="logo"><a href="index.html">Maintenance</a></li>
+                   <li id="logo"><a href="/">Maintenance</a></li>
                                
-                   <li><a href="index.html">Home</a></li>
+                   <li><a href="/">Home</a></li>
                    <li><a href="my-requests.html" id="reqs">My Requests </a></li>
                    <li><a href="request-form.html" id="reqForm">Request Service </a></li>
-                   <li id="login"><a href="index.html">Log Out</a></li> 
+                   <li id="login"><a href="/">Log Out</a></li> 
                 </ul>
         </div> <!-- navigation menu ends -->
 
         <!--
             page content start
         -->
-        <div class="cover">
+        <div class="cover" style="display:none;" id="myDiv">
         <div class="content">
             <div class="page-title">
                 <h3>Request Form Page</h3>
@@ -64,89 +65,7 @@
 
         </div>
       </div>
-      <script type="text/javascript">
-        window.onload = function() {
-            const sub = localStorage.getItem('sub')
-            const token = localStorage.getItem("token");
-            let msg = localStorage.getItem("msg");
-            document.getElementById('flash').style.color = 'green'
-            document.getElementById('flash').innerHTML = msg
-            localStorage.removeItem( 'msg' );
-            let url = new URL(window.location.href);
-            let reqId = url.searchParams.get("reqId");
-            requestForm()
 
-            // Load create requests page 
-            function requestForm(){
-
-                fetch(sub + '/users/requests/' + reqId, {
-                    method:"GET",
-                    headers: {
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Credentials": true,
-                        'Authorization': `Bearer ${token}`
-                    }
-                    })
-                    .then((res) => res.json())
-                    .then((data) => {
-                        
-                        console.log(data)
-                        if(data.message) {
-                            
-                            localStorage.setItem("msg","Login To Continue");
-                            window.location.href = 'login.html'
-                        }else{
-                            document.getElementById('category').value = data.category
-                            document.getElementById('location').value = data.location
-                            document.getElementById('description').value = data.description
-
-                        }
-                    })
-
-            }
-
-            // Post requests 
-            let req_form = document.getElementById('request_form')
-            if (req_form){
-                req_form.addEventListener
-                ('submit', createRequest);
-                
-            }
-
-            function createRequest(e){
-                e.preventDefault();
-
-                let location = document.getElementById('location').value;        
-                let category = document.getElementById('category').value;        
-                let description = document.getElementById('description').value;
-
-                fetch(sub + '/users/requests/' + reqId, {
-                    method:"PUT",
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-type':'application/json',
-                        'Authorization': 'Bearer ' + token
-                    },
-                    body:JSON.stringify({category:category,
-                        location:location, description:description})
-                    })
-                    .then((res) => {
-                        return res.json()
-                    })
-                    .then((data) => {
-                        if(data.message == "Update succesfful") {
-                            window.location.href = 'my-requests.html'
-
-                        }else{
-                            document.getElementById('flash').style.color = 'red'
-                            document.getElementById('flash').innerHTML = data.message
-                        }
-                    })
-
-            }
-
-        }
-     </script>
-
+      <div class="loader"></div>
     </body>
 </html>

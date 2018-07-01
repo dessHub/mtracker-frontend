@@ -24,7 +24,7 @@ api.post = (endpoint, data, token) => {
       });
     }
   
-api.update = (endpoint, token, data) => {
+api.update = (endpoint, data, token) => {
       return fetch(`${url}${endpoint}`, {
         method: "PUT",
         body: JSON.stringify(data),
