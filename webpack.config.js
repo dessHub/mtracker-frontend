@@ -8,7 +8,8 @@ module.exports = {
         viewRequests: "./assets/js/viewRequests.js",
         requestUpdate: "./assets/js/requestUpdate.js",
         logOut: "./assets/js/logout.js",
-        dashboard: "./assets/js/dashboard.js"
+        dashboard: "./assets/js/dashboard.js",
+        adminRequest: "./assets/js/adminRequest.js",
     },
     output: {
         path: path.resolve(__dirname, "dist"),
