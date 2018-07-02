@@ -42,8 +42,7 @@ window.onload = function() {
     // Post requests 
     let req_form = document.getElementById("request_form");
     if (req_form){
-        req_form.addEventListener
-        ("submit", createRequest);
+        req_form.addEventListener("submit", createRequest);
         
     }
 
