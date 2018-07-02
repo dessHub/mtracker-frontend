@@ -10,6 +10,7 @@ module.exports = {
         logOut: "./assets/js/logout.js",
         dashboard: "./assets/js/dashboard.js",
         adminRequest: "./assets/js/adminRequest.js",
+        adminRequests: "./assets/js/adminRequests.js"
     },
     output: {
         path: path.resolve(__dirname, "dist"),

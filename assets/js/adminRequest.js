@@ -28,7 +28,7 @@ window.onload = function() {
                     }                    
 
                 }else{
-                    
+                    document.getElementById("myDiv").style.display = "block";
                     document.getElementById("category").innerHTML = data.category;
                     document.getElementById("location").innerHTML = data.location;
                     document.getElementById("description").innerHTML = data.description;
