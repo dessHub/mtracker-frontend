@@ -24,6 +24,7 @@ window.onload = function() {
 
                 }else{
                     document.getElementById("myDiv").style.display = "block";
+                    document.getElementById("loader").style.display = "none";
                     let table = document.getElementById("table"); 
                     let data = resp.pending;
                     let pending = data.length;
@@ -50,7 +51,7 @@ window.onload = function() {
                         no.innerHTML = i+1;
                         category.innerHTML = data[i].category;
                         location.innerHTML = data[i].location;
-                        description.innerHTML ="<a href=\"request.html\">"+ data[i].description + "</a>";
+                        description.innerHTML =data[i].description;
                         status.innerHTML = "<span id=\"status-pending\">" + data[i].status + "</span>";                  
                         action.innerHTML = "<a href=\"request.html?reqId="+ data[i].id + "\">Approve</a>";
                         
