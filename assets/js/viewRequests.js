@@ -14,6 +14,7 @@ window.onload = function() {
                 console.log(resp);
                 if(resp.response) {
                     document.getElementById("myDiv").style.display = "block";
+                    document.getElementById("loader").style.display = "none";
                     let table = document.getElementById("table"); 
                     let data = resp.response;         
 
@@ -33,7 +34,7 @@ window.onload = function() {
                         no.innerHTML = i+1;
                         category.innerHTML = data[i].category;
                         location.innerHTML = data[i].location;
-                        description.innerHTML ="<a href=\"request.html\">"+ data[i].description + "</a>";
+                        description.innerHTML =data[i].description;
                         if(data[i].status == "Pending"){
                             status.innerHTML = "<span id=\"status-pending\">" + data[i].status + "</span>";
                         }else if(data[i].status == "Resolved"){

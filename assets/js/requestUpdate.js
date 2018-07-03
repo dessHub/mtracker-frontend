@@ -30,6 +30,7 @@ window.onload = function() {
 
                 }else{
                     document.getElementById("myDiv").style.display = "block";
+                    document.getElementById("loader").style.display = "none";
                     document.getElementById("category").value = data.category;
                     document.getElementById("location").value = data.location;
                     document.getElementById("description").value = data.description;
