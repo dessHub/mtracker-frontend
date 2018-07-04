@@ -1,4 +1,4 @@
-const url = "http://mtracker28.herokuapp.com/api/v2";
+const url = "https://mtracker28.herokuapp.com/api/v2";
 const api = {};
   
 api.get = (endpoint, token) => {
