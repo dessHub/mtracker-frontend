@@ -29,21 +29,27 @@
         
         <div class="admin-content" style="display:none;" id="myDiv">
           <div class="filter">
-              <form>
+              <form id="search">
                   <div class="row">
                       <div class="col-lg-1 col-sm-12"></div>
-                      <div class="col-lg-2 col-sm-12">
-                          <select name="serviceType">
+                      <div class="col-lg-3 col-sm-12">
+                          <select name="category" id="category" required>
                               <option value="">Select Service Type</option>
                               <option value="Maintenance">Maintenance</option>
                               <option value="Repair">Repair</option>
                           </select>
                       </div>
-                      <div class="col-lg-7 col-sm-12">
-                          <input type="search" name="search" placeholder="Search with keywords">
+                      <div class="col-lg-6 col-sm-12">
+                        <select name="status" id="status" required>
+                            <option value="">Select Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Resolved">Resolved</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
                       </div>
                       <div class="col-lg-2 col-sm-12">
-                          <button class="btn-success " id="search">Search </button> 
+                          <input type="submit" class="btn-success " value="Search"> 
                       </div>
 
                   </div>
@@ -58,14 +64,14 @@
                     <tr>
                       <th>#</th>
                       <th>Type</th>
-                      <th>Date</th>
+                      <th>location</th>
                       <th>Description</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   
-                  <tbody>
+                  <tbody id="tbody">
                     <tr>
                       <td></td>
                       <td></td>

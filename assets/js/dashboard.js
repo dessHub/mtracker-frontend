@@ -53,7 +53,7 @@ window.onload = function() {
                         location.innerHTML = data[i].location;
                         description.innerHTML =data[i].description;
                         status.innerHTML = "<span id=\"status-pending\">" + data[i].status + "</span>";                  
-                        action.innerHTML = "<a href=\"request.html?reqId="+ data[i].id + "\">Approve</a>";
+                        action.innerHTML = "<a href=\"request.html?reqId="+ data[i].id + "\">Update Status</a>";
                         
                         
                         
