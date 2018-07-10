@@ -1,6 +1,7 @@
 import api from "./api";
 window.onload = function() {
     const token = localStorage.getItem("token");
+    localStorage.removeItem("msg");
 
     // Load requests page 
     dashboard();
@@ -26,8 +27,8 @@ window.onload = function() {
                     document.getElementById("myDiv").style.display = "block";
                     document.getElementById("loader").style.display = "none";
                     let table = document.getElementById("table"); 
-                    let data = resp.pending;
-                    let pending = data.length;
+                    let list = resp.pending;
+                    let pending = list.length;
                     let approved = resp.approved.length;
                     let users = resp.users.length;
                     
@@ -35,7 +36,7 @@ window.onload = function() {
                     document.getElementById("approved").innerHTML = approved;
                     document.getElementById("users").innerHTML = users;         
 
-                    for(let i = 0; i < data.length; i++){
+                    list.map((data) => {
                         // create a table row
                         let new_row = table.insertRow();
                         
@@ -48,16 +49,16 @@ window.onload = function() {
                         let action = new_row.insertCell(5);
 
                         //add value to cell
-                        no.innerHTML = i+1;
-                        category.innerHTML = data[i].category;
-                        location.innerHTML = data[i].location;
-                        description.innerHTML =data[i].description;
-                        status.innerHTML = "<span id=\"status-pending\">" + data[i].status + "</span>";                  
-                        action.innerHTML = "<a href=\"request.html?reqId="+ data[i].id + "\">Update Status</a>";
+                        no.innerHTML = list.indexOf(data) + 1;
+                        category.innerHTML = data.category;
+                        location.innerHTML = data.location;
+                        description.innerHTML =data.description;
+                        status.innerHTML = "<span id=\"status-pending\">" + data.status + "</span>";                  
+                        action.innerHTML = "<a href=\"request.html?reqId="+ data.id + "\">Update Status</a>";
                         
                         
                         
-                    }
+                    });
                 }
             });
 
