@@ -122,6 +122,9 @@ ul {
     overflow: hidden;
     background-color: none;
 }
+#login {
+    float: right!important;
+}
 li {
     float: left;
     margin-right: 1px;
