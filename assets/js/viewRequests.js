@@ -16,9 +16,9 @@ window.onload = function() {
                     document.getElementById("myDiv").style.display = "block";
                     document.getElementById("loader").style.display = "none";
                     let table = document.getElementById("table"); 
-                    let data = resp.response;         
+                    let list = resp.response;         
 
-                    for(let i = 0; i < data.length; i++){
+                    list.map((data) => {
                         // create a table row
                         let new_row = table.insertRow();
                         
@@ -31,24 +31,24 @@ window.onload = function() {
                         let action = new_row.insertCell(5);
 
                         //add value to cell
-                        no.innerHTML = i+1;
-                        category.innerHTML = data[i].category;
-                        location.innerHTML = data[i].location;
-                        description.innerHTML =data[i].description;
-                        if(data[i].status == "Pending"){
-                            status.innerHTML = "<span id=\"status-pending\">" + data[i].status + "</span>";
-                        }else if(data[i].status == "Resolved"){
-                            status.innerHTML = "<span id=\"status-resolved\">" + data[i].status + "</span>";
+                        no.innerHTML = list.indexOf(data);
+                        category.innerHTML = data.category;
+                        location.innerHTML = data.location;
+                        description.innerHTML =data.description;
+                        if(data.status == "Pending"){
+                            status.innerHTML = "<span id=\"status-pending\">" + data.status + "</span>";
+                        }else if(data.status == "Resolved"){
+                            status.innerHTML = "<span id=\"status-resolved\">" + data.status + "</span>";
                         }else{
-                            status.innerHTML = "<span id=\"status-cancelled\">" + data[i].status + "</span>";
+                            status.innerHTML = "<span id=\"status-cancelled\">" + data.status + "</span>";
                         }
 
-                        if(data[i].status == "Pending"){
-                            action.innerHTML = "<a href=\"requestUpdate.html?reqId="+ data[i].id + "\">Edit</a>";
+                        if(data.status == "Pending"){
+                            action.innerHTML = "<a href=\"requestUpdate.html?reqId="+ data.id + "\">Edit</a>";
                         }
                         
                         
-                    }
+                    });
 
                 }else{
                     
