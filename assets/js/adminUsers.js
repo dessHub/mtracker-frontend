@@ -25,9 +25,9 @@ window.onload = function() {
 
                 }else{
                     let table = document.getElementById("table"); 
-                    let data = resp;       
+                    let list = resp;       
 
-                    for(let i = 0; i < data.length; i++){
+                    list.map((data) => {
                         // create a table row
                         let new_row = table.insertRow();
                         
@@ -39,18 +39,18 @@ window.onload = function() {
                         let action = new_row.insertCell(4);
 
                         //add value to cell
-                        no.innerHTML = i+1;
-                        name.innerHTML = data[i].username;
-                        email.innerHTML = data[i].email;
-                        role.innerHTML =data[i].role;  
-                        if(data[i].role == "Normal"){
-                            action.innerHTML = "<a href=\"user.html?username="+ data[i].username + "\"><button class=\"btn-success\">Grant Admin Rights</button></a>";
+                        no.innerHTML = list.indexOf(data)+1;
+                        name.innerHTML = data.username;
+                        email.innerHTML = data.email;
+                        role.innerHTML =data.role;  
+                        if(data.role == "Normal"){
+                            action.innerHTML = "<a href=\"user.html?username="+ data.username + "\"><button class=\"btn-success\">Grant Admin Rights</button></a>";
                         }else{
-                            action.innerHTML = "<a href=\"user.html?username="+ data[i].username + "\"><button class='btn-warning'>Revoke Admin Rights</button></a>";
+                            action.innerHTML = "<a href=\"user.html?username="+ data.username + "\"><button class='btn-warning'>Revoke Admin Rights</button></a>";
 
                         }             
                         
-                    }
+                    });
                 }
             });
 
