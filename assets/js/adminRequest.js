@@ -1,4 +1,5 @@
 import api from "./api";
+
 window.onload = function() {
     const token = localStorage.getItem("token");
     let url = new URL(window.location.href);
@@ -110,15 +111,13 @@ window.onload = function() {
 
     let res_form = document.getElementById("resolve");
     if (res_form){
-        res_form.addEventListener("submit", resolve);
-        
+        res_form.addEventListener("submit", resolve);      
     }
 
     function resolve(e){
         e.preventDefault();
         
         let endpoint = "/requests/" + reqId + "/resolve";
-
         api.get(endpoint, token )
             .then((res) => {
                 return res.json();
@@ -139,8 +138,7 @@ window.onload = function() {
 
     let del_form = document.getElementById("delete");
     if (del_form){
-        del_form.addEventListener("submit", remove);
-        
+        del_form.addEventListener("submit", remove);     
     }
 
     function remove(e){

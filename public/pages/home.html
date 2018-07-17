@@ -3,8 +3,8 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Maintenance Tracker App</title>
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <script src="assets/js/controller.js"></script>
+        <link rel="stylesheet" href="../../assets/css/styles.css">
+        <script src="../../assets/js/controller.js"></script>
         
     </head>
     <body>
@@ -14,9 +14,12 @@
          
             <ul id="menu">
                 
-               <li id="logo"><a href="index.html">Maintenance</a></li>
+               <li id="logo"><a href="home.html">Maintenance</a></li>
                            
-              <li id="login"><a href="public/auth/login.html">Login</a></li> 
+               <li><a href="my-requests.html" id="reqs">My Requests </a></li>
+               <li><a href="request-form.html" id="reqForm">Request Service </a></li>
+                           
+              <li id="login"><a href="../auth/logout.html">Logout</a></li> 
             </ul>
         </div> <!-- navigation menu ends -->
 
@@ -29,10 +32,10 @@
                 <div class="col-lg-12 col-sm-12">
                         <p id="flash"></p>
                     <h1 id="welcome-title">Welcome To Maintenance Tracker App</h2>
-                    <p>We offer Maintenance and Repair services . Create account and request for a service.</p> 
-                    <a href="public/auth/signup.html"><button class="btn-primary" >CREATE ACCOUNT</button></a>
-                    <a href="public/auth/login.html"><button
-                       class="btn-success" >LOGIN</button></a>  
+                    <p>We offer Maintenance and Repair services . Create a new request for a service.</p> 
+                    <a href="request-form.html"><button class="btn-primary" >CREATE REQUEST</button></a>
+                    <a href="my-requests.html"><button
+                       class="btn-success" >MY REQUESTS</button></a>  
                 </div>
             </div>
         </div>
